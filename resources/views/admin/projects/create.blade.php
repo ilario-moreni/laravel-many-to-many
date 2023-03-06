@@ -23,6 +23,12 @@
                     <option value="{{ $type->id }}">{{ $type->title }}</option>
                 @endforeach
             </select>
+            <div>Technologies:</div>
+            @foreach ($technologies as $technology)
+                <input type="checkbox" value="{{ $technology->id }}" name="technologies[]">
+                <label class="form-check-label">{{ $technology->title }}</label>
+            @endforeach
+            <br>
             <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
             <textarea name="description" placeholder='Description of the project' class="form-control" id="description"
                 rows="3"></textarea>
