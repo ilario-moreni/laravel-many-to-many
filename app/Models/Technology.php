@@ -14,12 +14,12 @@ class Technology extends Model
 
     protected $fillable = ['title', 'slug'];
 
-
-    public function project(){
-        return $this->belongsToMany('App\Models\Project');
-    }
-
     public static function generateSlug($title){
         return Str::slug($title, '-');
     }
+
+    public function projects(){
+        return $this->belongsToMany(Project::class);
+    }
+
 }

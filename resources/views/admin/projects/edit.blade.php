@@ -26,6 +26,19 @@
                         {{ $type->id == old('type_id', $project->type_id) ? 'selected' : '' }}>{{ $type->title }}</option>
                 @endforeach
             </select>
+            <div>Technologies:</div>
+            @foreach ($technologies as $technology)
+                @if ($errors->any())
+                    <input type="checkbox" value="{{ $technology->id }}" name="technologies[]"
+                        {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                    <label class="form-check-label">{{ $technology->title }}</label>
+                @else
+                    <input type="checkbox" value="{{ $technology->id }}" name="technologies[]"
+                        {{ $project->technologies->contains($technology) ? 'checked' : '' }}>
+                    <label class="form-check-label">{{ $technology->title }}</label>
+                @endif
+            @endforeach
+            <br>
             <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
             <textarea name="description" value="" placeholder='Description of the project' class="form-control"
                 id="description" rows="3">{{ old('description') ?? $project->description }}</textarea>
